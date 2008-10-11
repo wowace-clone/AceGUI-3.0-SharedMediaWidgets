@@ -4,11 +4,8 @@ LoadAddOn("LibSharedMedia-3.0")
 local AceGUI = LibStub("AceGUI-3.0")
 local Media = LibStub("LibSharedMedia-3.0")
 
-WWWWW = Media
-
 AceGUISharedMediaWidgets = {}
 do
-	local blanktable = {}
 	AceGUIWidgetLSMlists = {
 		['font'] = Media:HashTable("font"),
 		['sound'] = Media:HashTable("sound"),
