@@ -6,6 +6,5 @@
 ## Author: Yssaril
 ## OptionalDeps: Ace3, LibSharedMedia-3.0
 ## X-Category: Interface Enhancements
-## LoadOnDemand: 1
 
 widget.xml
