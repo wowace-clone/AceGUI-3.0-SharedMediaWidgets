@@ -69,7 +69,7 @@ do
 
 	do
 		local widgetType = "LSM30_Background"
-		local widgetVersion = 3
+		local widgetVersion = 4
 
 		local function Frame_OnEnter(this)
 			local self = this.obj

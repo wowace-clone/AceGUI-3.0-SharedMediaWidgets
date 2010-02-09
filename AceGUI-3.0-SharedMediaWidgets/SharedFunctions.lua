@@ -26,9 +26,10 @@ do
 			child = select(i, ...)
 		end
 	end
-
+	
 	local function OnItemValueChanged(this, event, checked)
 		local self = this.userdata.obj
+		
 		if self.multiselect then
 			self:Fire("OnValueChanged", this.userdata.value, checked)
 		else
@@ -37,8 +38,10 @@ do
 				self:Fire("OnValueChanged", this.userdata.value)
 			else
 				this:SetValue(true)
-			end		
-			self.pullout:Close()
+			end
+			if self.open then
+				self.pullout:Close()
+			end
 		end
 	end
 	

@@ -223,7 +223,7 @@ do
 
 	do
 		local widgetType = "LSM30_Sound"
-		local widgetVersion = 3
+		local widgetVersion = 4
 
 		local function AddListItem(self, value, text)
 			local item = AceGUI:Create("LSM30_Sound_Item_Select")

@@ -33,7 +33,7 @@ do
 
 	do
 		local widgetType = "LSM30_Font"
-		local widgetVersion = 3
+		local widgetVersion = 4
 
 		local function SetText(self, text)
 			if text and text ~= '' then
