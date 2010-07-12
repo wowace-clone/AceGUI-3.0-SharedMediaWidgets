@@ -17,7 +17,7 @@ do
 		self.check:Hide()
 		table.insert(contentFrameCache, self)
 	end
-	
+
 	local function ContentOnClick(this, button)
 		local self = this.obj
 		self:Fire("OnValueChanged", this.text:GetText())
@@ -25,17 +25,17 @@ do
 			self.dropdown = AGSMW:ReturnDropDownFrame(self.dropdown)
 		end
 	end
-	
+
 	local function ContentOnEnter(this, button)
 		local self = this.obj
 		local text = this.text:GetText()
 		local border = self.list[text] or Media:Fetch('border',text)
-		this.dropdown:SetBackdrop({edgeFile = border, 
+		this.dropdown:SetBackdrop({edgeFile = border,
 			bgFile=[[Interface\DialogFrame\UI-DialogBox-Background-Dark]],
-			tile = true, tileSize = 16, edgeSize = 16, 
+			tile = true, tileSize = 16, edgeSize = 16,
 			insets = { left = 4, right = 4, top = 4, bottom = 4 }})
 	end
-	
+
 	local function GetContentLine()
 		local frame
 		if next(contentFrameCache) then
@@ -47,7 +47,7 @@ do
 				frame:SetHighlightTexture([[Interface\QuestFrame\UI-QuestTitleHighlight]], "ADD")
 				frame:SetScript("OnClick", ContentOnClick)
 				frame:SetScript("OnEnter", ContentOnEnter)
-			local check = frame:CreateTexture("OVERLAY")	
+			local check = frame:CreateTexture("OVERLAY")
 				check:SetWidth(16)
 				check:SetHeight(16)
 				check:SetPoint("LEFT",frame,"LEFT",1,-1)
@@ -65,79 +65,79 @@ do
 		frame:Show()
 		return frame
 	end
-	
+
 	local function OnAcquire(self)
 		self:SetHeight(44)
 		self:SetWidth(200)
 	end
-	
+
 	local function OnRelease(self)
 		self:SetText("")
 		self:SetLabel("")
 		self:SetDisabled(false)
-		
+
 		self.value = nil
 		self.list = nil
 		self.open = nil
 		self.hasClose = nil
-		
+
 		self.frame:ClearAllPoints()
 		self.frame:Hide()
 	end
-	
+
 	local function SetValue(self, value) -- Set the value to an item in the List.
 		if self.list then
 			self:SetText(value or "")
 		end
 		self.value = value
 	end
-	
+
 	local function GetValue(self)
 		return self.value
 	end
-	
+
 	local function SetList(self, list) -- Set the list of values for the dropdown (key => value pairs)
 		self.list = list
 	end
-	
-	
+
+
 	local function SetText(self, text) -- Set the text displayed in the box.
 		self.frame.text:SetText(text or "")
 		local border = self.list[text] or Media:Fetch('border',text)
-		
+
 		self.frame.displayButton:SetBackdrop({edgeFile = border,
 			bgFile=[[Interface\DialogFrame\UI-DialogBox-Background-Dark]],
-			tile = true, tileSize = 16, edgeSize = 16, 
+			tile = true, tileSize = 16, edgeSize = 16,
 			insets = { left = 4, right = 4, top = 4, bottom = 4 }})
 	end
-	
+
 	local function SetLabel(self, text) -- Set the text for the label.
-		self.frame.label:SetText(text or "")		
+		self.frame.label:SetText(text or "")
 	end
-	
+
 	local function AddItem(self, key, value) -- Add an item to the list.
 		self.list = self.list or {}
 		self.list[key] = value
 	end
 	local SetItemValue = AddItem -- Set the value of a item in the list. <<same as adding a new item>>
-	
+
 	local function SetMultiselect(self, flag) end -- Toggle multi-selecting. <<Dummy function to stay inline with the dropdown API>>
 	local function GetMultiselect() return false end-- Query the multi-select flag. <<Dummy function to stay inline with the dropdown API>>
 	local function SetItemDisabled(self, key) end-- Disable one item in the list. <<Dummy function to stay inline with the dropdown API>>
-	
+
 	local function SetDisabled(self, disabled) -- Disable the widget.
 		self.disabled = disabled
 		if disabled then
 			self.frame:Disable()
 		else
 			self.frame:Enable()
-		end		
+		end
 	end
-	
+
 	local function textSort(a,b)
 		return string.upper(a) < string.upper(b)
 	end
-	
+
 	local sortedlist = {}
 	local function ToggleDrop(this)
 		local self = this.obj
@@ -166,32 +166,32 @@ do
 			wipe(sortedlist)
 		end
 	end
-	
+
 	local function ClearFocus(self)
 		if self.dropdown then
 			self.dropdown = AGSMW:ReturnDropDownFrame(self.dropdown)
 		end
 	end
-	
+
 	local function OnHide(this)
 		local self = this.obj
 		if self.dropdown then
 			self.dropdown = AGSMW:ReturnDropDownFrame(self.dropdown)
 		end
 	end
-	
+
 	local function Drop_OnEnter(this)
 		this.obj:Fire("OnEnter")
 	end
-	
+
 	local function Drop_OnLeave(this)
 		this.obj:Fire("OnLeave")
 	end
-	
+
 	local function Constructor()
 		local frame = AGSMW:GetBaseFrameWithWindow()
 		local self = {}
-		
+
 		self.type = widgetType
 		self.frame = frame
 		frame.obj = self
@@ -200,9 +200,9 @@ do
 		frame.dropButton:SetScript("OnLeave", Drop_OnLeave)
 		frame.dropButton:SetScript("OnClick",ToggleDrop)
 		frame:SetScript("OnHide", OnHide)
-		
+
 		self.alignoffset = 31
-		
+
 		self.OnRelease = OnRelease
 		self.OnAcquire = OnAcquire
 		self.ClearFocus = ClearFocus
@@ -218,7 +218,7 @@ do
 		self.SetItemValue = SetItemValue
 		self.SetItemDisabled = SetItemDisabled
 		self.ToggleDrop = ToggleDrop
-		
+
 		AceGUI:RegisterAsWidget(self)
 		return self
 	end
