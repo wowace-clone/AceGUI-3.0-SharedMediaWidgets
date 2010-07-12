@@ -8,7 +8,7 @@ local AGSMW = AceGUISharedMediaWidgets
 
 do
 	local widgetType = "LSM30_Statusbar"
-	local widgetVersion = 4
+	local widgetVersion = 5
 
 	local contentFrameCache = {}
 	local function ReturnSelf(self)
