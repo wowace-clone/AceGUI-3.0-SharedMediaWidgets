@@ -8,7 +8,7 @@ local AGSMW = AceGUISharedMediaWidgets
 
 do
 	local widgetType = "LSM30_Background"
-	local widgetVersion = 5
+	local widgetVersion = 6
 
 	local contentFrameCache = {}
 	local function ReturnSelf(self)
@@ -98,7 +98,7 @@ do
 	end
 
 	local function SetList(self, list) -- Set the list of values for the dropdown (key => value pairs)
-		self.list = list
+		self.list = list or Media:HashTable("background")
 	end
 
 
