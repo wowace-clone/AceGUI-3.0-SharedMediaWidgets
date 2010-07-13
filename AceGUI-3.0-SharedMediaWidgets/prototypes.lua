@@ -1,10 +1,21 @@
--- Widget is based on the AceGUIWidget-DropDown.lua supplied with AceGUI-3.0
 -- Widget created by Yssaril
+--@debug@
+local DataVersion = 9001 -- dev version always overwrites everything else :)
+--@end-debug@
+--[===[@non-debug@
+local DataVersion = @project-revision@ or 1
+--@end-non-debug@]===]
+local AGSMW = LibStub:NewLibrary("AceGUISharedMediaWidgets-1.0", DataVersion)
+
+if not AGSMW then
+  return	-- already loaded and no upgrade necessary
+end
+
 LoadAddOn("LibSharedMedia-3.0")
 local AceGUI = LibStub("AceGUI-3.0")
 local Media = LibStub("LibSharedMedia-3.0")
 
-AceGUISharedMediaWidgets = AceGUISharedMediaWidgets or {}
+AGSMW = AGSMW or {}
 
 AceGUIWidgetLSMlists = {
 	['font'] = Media:HashTable("font"),
@@ -42,7 +53,7 @@ do
 	}
 
 	-- create or retrieve BaseFrame
-	function AceGUISharedMediaWidgets:GetBaseFrame()
+	function AGSMW:GetBaseFrame()
 		local frame = CreateFrame("Frame", nil, UIParent)
 		frame:SetHeight(44)
 		frame:SetWidth(200)
@@ -103,7 +114,7 @@ do
 		return frame
 	end
 
-	function AceGUISharedMediaWidgets:GetBaseFrameWithWindow()
+	function AGSMW:GetBaseFrameWithWindow()
 		local frame = self:GetBaseFrame()
 
 		local displayButton = CreateFrame("Button", nil, frame)
@@ -196,7 +207,7 @@ do
 	end
 
 	local DropDownCache = {}
-	function AceGUISharedMediaWidgets:GetDropDownFrame()
+	function AGSMW:GetDropDownFrame()
 		local frame
 		if next(DropDownCache) then
 			frame = table.remove(DropDownCache)
@@ -244,7 +255,7 @@ do
 		return frame
 	end
 
-	function AceGUISharedMediaWidgets:ReturnDropDownFrame(frame)
+	function AGSMW:ReturnDropDownFrame(frame)
 		ClearFrames(frame)
 		frame:ClearAllPoints()
 		frame:Hide()
