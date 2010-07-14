@@ -8,7 +8,7 @@ local AGSMW = LibStub("AceGUISharedMediaWidgets-1.0")
 
 do
 	local widgetType = "LSM30_Font"
-	local widgetVersion = 7
+	local widgetVersion = 8
 
 	local contentFrameCache = {}
 	local function ReturnSelf(self)
@@ -130,6 +130,7 @@ do
 			self.dropdown = AGSMW:ReturnDropDownFrame(self.dropdown)
 			AceGUI:ClearFocus()
 		else
+			AceGUI:SetFocus(self)
 			self.dropdown = AGSMW:GetDropDownFrame()
 			self.dropdown:SetPoint("TOPLEFT", self.frame, "BOTTOMLEFT")
 			for k, v in pairs(self.list) do
@@ -147,7 +148,6 @@ do
 				f.obj = self
 				self.dropdown:AddFrame(f)
 			end
-			AceGUI:SetFocus(self)
 			wipe(sortedlist)
 		end
 	end
