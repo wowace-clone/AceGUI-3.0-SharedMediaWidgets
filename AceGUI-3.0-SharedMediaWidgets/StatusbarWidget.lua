@@ -101,7 +101,7 @@ do
 
 	local function SetText(self, text) -- Set the text displayed in the box.
 		self.frame.text:SetText(text or "")
-		local statusbar = self.list[k] or Media:Fetch('statusbar',text)
+		local statusbar = self.list[text] ~= text and self.list[text] or Media:Fetch('statusbar',text)
 		self.bar:SetTexture(statusbar)
 	end
 
@@ -154,7 +154,7 @@ do
 					f.check:Show()
 				end
 
-				local statusbar = self.list[k] or Media:Fetch('statusbar',k)
+				local statusbar = self.list[k] ~= k and self.list[k] or Media:Fetch('statusbar',k)
 				f.bar:SetTexture(statusbar)
 				f.obj = self
 				f.dropdown = self.dropdown

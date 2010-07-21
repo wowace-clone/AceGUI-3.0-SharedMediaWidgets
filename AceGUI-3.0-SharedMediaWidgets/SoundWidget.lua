@@ -29,7 +29,7 @@ do
 	local function ContentSpeakerOnClick(this, button)
 		local self = this.frame.obj
 		local sound = this.frame.text:GetText()
-		PlaySoundFile(self.list[sound] or Media:Fetch('sound',sound))
+		PlaySoundFile(self.list[sound] ~= sound and self.list[sound] or Media:Fetch('sound',sound))
 	end
 
 	local function GetContentLine()
@@ -199,7 +199,7 @@ do
 	local function WidgetPlaySound(this)
 		local self = this.obj
 		local sound = self.frame.text:GetText()
-		PlaySoundFile(self.list[sound] or Media:Fetch('sound',sound))
+		PlaySoundFile(self.list[sound] ~= sound and self.list[sound] or Media:Fetch('sound',sound))
 	end
 
 	local function Constructor()

@@ -29,7 +29,7 @@ do
 	local function ContentOnEnter(this, button)
 		local self = this.obj
 		local text = this.text:GetText()
-		local border = self.list[text] or Media:Fetch('border',text)
+		local border = self.list[text] ~= text and self.list[text] or Media:Fetch('border',text)
 		this.dropdown:SetBackdrop({edgeFile = border,
 			bgFile=[[Interface\DialogFrame\UI-DialogBox-Background-Dark]],
 			tile = true, tileSize = 16, edgeSize = 16,
@@ -103,7 +103,7 @@ do
 
 	local function SetText(self, text) -- Set the text displayed in the box.
 		self.frame.text:SetText(text or "")
-		local border = self.list[text] or Media:Fetch('border',text)
+		local border = self.list[text] ~= text and self.list[text] or Media:Fetch('border',text)
 
 		self.frame.displayButton:SetBackdrop({edgeFile = border,
 			bgFile=[[Interface\DialogFrame\UI-DialogBox-Background-Dark]],

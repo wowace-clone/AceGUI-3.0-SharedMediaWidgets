@@ -29,7 +29,7 @@ do
 	local function ContentOnEnter(this, button)
 		local self = this.obj
 		local text = this.text:GetText()
-		local background = self.list[text] or Media:Fetch('background',text)
+		local background = self.list[text] ~= text and self.list[text] or Media:Fetch('background',text)
 		self.dropdown.bgTex:SetTexture(background)
 	end
 
@@ -104,7 +104,7 @@ do
 
 	local function SetText(self, text) -- Set the text displayed in the box.
 		self.frame.text:SetText(text or "")
-		local background = self.list[text] or Media:Fetch('background',text)
+		local background = self.list[text] ~= text and self.list[text] or Media:Fetch('background',text)
 
 		self.frame.displayButton:SetBackdrop({bgFile = background,
 			edgeFile = "Interface/Tooltips/UI-Tooltip-Border",

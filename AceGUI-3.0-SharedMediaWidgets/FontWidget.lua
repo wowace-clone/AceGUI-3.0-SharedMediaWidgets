@@ -91,7 +91,7 @@ do
 
 	local function SetText(self, text) -- Set the text displayed in the box.
 		self.frame.text:SetText(text or "")
-		local font = self.list[text] or Media:Fetch('font',text)
+		local font = self.list[text] ~= text and self.list[text] or Media:Fetch('font',text)
 		local _, size, outline= self.frame.text:GetFont()
 		self.frame.text:SetFont(font,size,outline)
 	end
@@ -140,7 +140,8 @@ do
 			for i, k in ipairs(sortedlist) do
 				local f = GetContentLine()
 				local _, size, outline= f.text:GetFont()
-				f.text:SetFont(self.list[k],size,outline)
+				local font = self.list[k] ~= k and self.list[k] or Media:Fetch('font',k)
+				f.text:SetFont(font,size,outline)
 				f.text:SetText(k)
 				if k == self.value then
 					f.check:Show()
