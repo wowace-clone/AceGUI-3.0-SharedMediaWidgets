@@ -203,6 +203,8 @@ do
 			bar:SetPoint("BOTTOMRIGHT", frame,"BOTTOMRIGHT", -21, 5)
 		self.bar = bar
 
+		self.alignoffset = 31
+		
 		self.OnRelease = OnRelease
 		self.OnAcquire = OnAcquire
 		self.ClearFocus = ClearFocus

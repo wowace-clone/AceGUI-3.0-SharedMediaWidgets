@@ -3,7 +3,7 @@
 local DataVersion = 9001 -- dev version always overwrites everything else :)
 --@end-debug@
 --[===[@non-debug@
-local DataVersion = @project-revision@ or 1
+local DataVersion = @project-revision@
 --@end-non-debug@]===]
 local AGSMW = LibStub:NewLibrary("AceGUISharedMediaWidgets-1.0", DataVersion)
 
