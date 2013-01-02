@@ -227,10 +227,14 @@ do
 			frame.contentframe = contentframe
 
 			local scrollframe = CreateFrame("ScrollFrame", nil, frame)
+				scrollframe:SetWidth(160)
 				scrollframe:SetPoint("TOPLEFT", frame, "TOPLEFT", 14, -13)
 				scrollframe:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -14, 12)
 				scrollframe:SetScrollChild(contentframe)
 			frame.scrollframe = scrollframe
+
+			contentframe:SetPoint("TOPLEFT", scrollframe)
+			contentframe:SetPoint("TOPRIGHT", scrollframe)
 
 			local bgTex = frame:CreateTexture(nil, "ARTWORK")
 				bgTex:SetAllPoints(scrollframe)
